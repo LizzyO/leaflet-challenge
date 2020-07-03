@@ -40,21 +40,30 @@ function chooseColor(magnitude) {
     }
   }
 
-  function getColor(color) {
-    switch (true) {}
-    "#ffffb2",
-    "#fed976",
-    "#feb24c",
-    "#fd8d3c",
-    "#f03b20",
-    "#bd0026"
-    };
-
+  function getColor(category) {
+    switch (category) {
+    case "0-1" :
+      return "#ffffb2";
+    case "1-2" :
+      return "#fed976";
+    case "2-3" :
+      return "#feb24c";
+    case "3-4" :
+      return "#fd8d3c";
+    case "4-5" :
+      return "#f03b20";
+    case "5+" :
+      return '#bd0026';
+    default:
+      return "black";
+    }
+  }
+  console.log(getColor("0-1"))
 
 //fifth: Grab our GeoJSON data..
 d3.json(jsonResponse, function(data) {
 //sixth: display the json
-  console.log(data);
+  // console.log(data);
 
   //seven: Creating a geoJSON layer with the retrieved data
    L.geoJson(data, {
@@ -90,8 +99,11 @@ d3.json(jsonResponse, function(data) {
 
     for (var i = 0; i < categories.length; i++) {
         div.innerHTML +=
-            '<i class="circle" style="background-color:' + getColor(categories[i]) + '"></i> ' +
+            '<i class="circle" style="background-color":' + getColor(categories[i]) + '></i> ' +
              (categories[i] ? categories[i] + '<br>' : '+');
+            //  "<i style='background: " + getColor(categories[i]) + "'></i> " +       
+            //   categories[i] + (categories[i + 1] ? "&ndash;" + categories[i + 1] + "<br>" : "+");
+            //  console.log(getColor(categories[i]))
     }
     return div;
   };
